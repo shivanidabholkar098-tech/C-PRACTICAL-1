@@ -1,0 +1,62 @@
+#include <iostream>
+
+#include <string>
+
+using namespace std;
+
+
+struct Song
+
+{
+
+string title;
+
+string artist;
+
+string album;
+
+};
+
+
+Song playlist[100];
+
+int songCount = 0;
+
+
+// Add a song
+
+void addSong()
+
+{
+
+if (songCount >= 100)
+
+{
+
+cout << "\nPlaylist is full!\n";
+
+return;
+
+}
+
+
+cin.ignore();
+
+
+cout << "\n===== ADD SONG =====\n";
+
+
+cout << "Enter Song Title: ";
+
+getline(cin, playlist[songCount].title);
+
+
+cout << "Enter Artist Name: "; getline(cin, playlist[songCount].artist); cout << "Enter Album Name: "; getline(cin, playlist[songCount].album); songCount++; cout << "\nSong added successfully!\n"; } // Display playlist void displayPlaylist() { if (songCount == 0) { cout << "\nPlaylist is empty.\n"; return; } cout << "\n===== MUSIC PLAYLIST =====\n"; for (int i = 0; i < songCount; i++) { cout << "\nSong " << i + 1 << endl; cout << "Title : " << playlist[i].title << endl; cout << "Artist : " << playlist[i].artist << endl; cout << "Album : " << playlist[i].album << endl; } } // Search song void searchSong() { string title; bool found = false; cin.ignore();
+
+cout << "\nEnter song title to search: "; getline(cin, title); for (int i = 0; i < songCount; i++) { if (playlist[i].title == title) { cout << "\nSong Found!\n"; cout << "Title : " << playlist[i].title << endl; cout << "Artist : " << playlist[i].artist << endl; cout << "Album : " << playlist[i].album << endl; found = true; break; } } if (!found) { cout << "\nSong not found.\n"; } } // Delete song void deleteSong() { string title; bool found = false; cin.ignore(); cout << 
+
+"\nEnter song title to delete: "; getline(cin, title); for (int i = 0; i < songCount; i++) { if (playlist[i].title == title) { for (int j = i; j < songCount - 1; j++) {
+
+playlist[j] = playlist[j + 1]; } songCount--; found = true; cout << "\nSong deleted successfully!\n"; break; } } if (!found) { cout << "\nSong not found.\n"; } } // Count songs void countSongs() { cout << "\nTotal songs in playlist: " << songCount << endl; } int main() { int choice; do { cout << "\n================================\n"; cout << " MUSIC PLAYLIST MANAGER\n"; cout << "================================\n"; cout << "1. Add Song\n"; cout << "2. Display Playlist\n"; cout << "3. Search Song\n"; cout << "4. Delete Song\n";
+
+cout << "5. Count Songs\n"; cout << "6. Exit\n"; cout << "================================\n"; cout << "Enter your choice: "; cin >> choice; switch (choice) { case 1: addSong(); break; case 2: displayPlaylist(); break; case 3: searchSong(); break; case 4: deleteSong(); break; case 5: countSongs(); break; case 6: cout << "\nExiting Music Playlist Manager...\n"; break; default: cout << "\nInvalid choice!\n"; } } while (choice != 6); return 0; }
