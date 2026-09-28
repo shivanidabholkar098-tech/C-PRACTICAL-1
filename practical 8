@@ -1,0 +1,43 @@
+#include using namespace std;
+
+struct student { int rollNo; int score;
+
+student *next; };
+
+int main() { student *head = NULL;
+
+student *temp, *newNode; int n;
+
+cout << "ENTER NUMBER OF
+
+STUDENTS: ";
+
+cin >> n;
+
+
+for (int i = 1; i <= n; i++)
+
+{
+
+newNode = new student;
+
+
+cout << "\nENTER THE
+
+DETAILS OF STUDENT " << i <<
+
+endl;
+
+
+cout << "ROLL NUMBER: ";
+
+cin >> newNode->rollNo;
+
+
+cout << "ADMISSION SCORE:
+
+";
+
+cin >> newNode->score;
+
+newNode->next = NULL; if (head == NULL) { head = newNode; temp = head; } else { temp->next = newNode; temp = newNode; } } cout << "\nSTUDENT ADMISSION RECORDS:\n"; temp = head; while (temp != NULL) { cout << "ROLL NO: " << temp->rollNo << "\tSCORE: " << temp->score << endl; temp = temp->next; } return 0; }
