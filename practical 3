@@ -1,0 +1,5 @@
+#include <stdio.h> #include <ctype.h> #define MAX 100 char stack[MAX];
+
+int top = -1; // Push function void push(char ch) { stack[++top] = ch; } // Pop function char pop() { return stack[top--]; } // Peek function char peek() { return stack[top]; } // Function to return precedence int precedence(char ch) { switch(ch) { case '+': case '-': return 1; case '*': case '/': return 2; case '^': return 3; default: return 0; } } int main() { char infix[MAX], postfix[MAX]; int i = 0, j = 0; printf("Enter Infix Expression: "); scanf("%s", infix); while(infix[i] != '\0') { char ch = infix[i];
+
+switch(ch) { // Opening bracket case '(': push(ch); break; // Closing bracket case ')': while(peek() != '(') { postfix[j++] = pop(); } pop(); // Remove '(' break; // Operators case '+': case '-': case '*': case '/': case '^': while(top != -1 && precedence(peek()) >= precedence(ch)) { postfix[j++] = pop(); } push(ch); break; // Operands default: if(isalnum(ch)) { postfix[j++] = ch; } } i++; } // Pop remaining operators while(top != -1) { postfix[j++] = pop(); } postfix[j] = '\0'; printf("Postfix Expression: %s", postfix); return 0; }
