@@ -1,0 +1,3 @@
+#include<iostream> #include<string> using namespace std; #define MAX 5 string stack[MAX]; int top=-1; void push(string website) { if(top == MAX-1) { cout<<"STACK OVERFLOW! BROWSING HISTORY IS FULL"<< endl; } else { top++; stack[top] = website; cout<< website << " Added to browsing history." << endl;
+
+} } void display() { if(top == -1) { cout << "Browsing history is empty." << endl; } else { cout << "Browsing history (Top to Bottom):" << endl; for(int i = top; i >= 0; i--) { cout << stack[i] << endl; } } } int main() { push("Google.com"); push("Gmail.com"); push("Youtube.com"); push("Wikipedia.com"); string newWebsite; cout<<"\nENTER ANEW WEBSITE TO VISIT:-- "; cin>>newWebsite; push(newWebsite); display(); return 0; }
