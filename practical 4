@@ -1,0 +1,49 @@
+#include<iostream>
+
+using namespace std;
+
+
+#define MAX 5
+
+
+class Queue
+
+{
+
+int arr[MAX];
+
+int front, rear;
+
+
+public:
+
+Queue()
+
+{
+
+front = -1;
+
+rear = -1;
+
+}
+
+
+// Enqueue Operation
+
+void enqueue(int value)
+
+{
+
+if (rear == MAX - 1)
+
+{
+
+cout << "QUEUE OVERFLOW!" <<
+
+endl;
+
+return; } if (front == -1) front = 0; rear++; arr[rear] = value; cout << value << " inserted into the queue." << endl; } // Dequeue Operation void dequeue() { if (front == -1 || front > rear) { cout << "QUEUE UNDERFLOW!" << endl; return; } cout << arr[front] << " deleted from the queue." << endl; front++; if (front > rear) { front = rear = -1; } } // Peek Operation void peek() { if (front == -1) { cout << "QUEUE IS EMPTY!" << endl; return; }
+
+cout << "Front Element: " << arr[front] << endl; } // Display Operation void display() { if (front == -1) { cout << "QUEUE IS EMPTY!" << endl; return; } cout << "Queue Elements: "; for (int i = front; i <= rear; i++) { cout << arr[i] << " "; } cout << endl; } }; int main() { Queue q; int choice, value; do { cout << "\n------ Queue Using Array ------"; cout << "\n1. Enqueue"; cout << "\n2. Dequeue"; cout << "\n3. Peek"; cout << "\n4. Display"; cout << "\n5. Exit"; cout << "\nEnter your choice: "; cin >> choice; switch (choice)
+
+{ case 1: cout << "Enter value: "; cin >> value; q.enqueue(value); break; case 2: q.dequeue(); break; case 3: q.peek(); break; case 4: q.display(); break; case 5: cout << "Exiting Program..." << endl; break; default: cout << "Invalid Choice!" << endl; } } while (choice != 5); return 0; }
