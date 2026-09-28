@@ -1,0 +1,14 @@
+#include <iostream>
+
+using namespace std;
+
+
+class MyCircularQueue {
+
+private:
+
+int *arr; int front, rear, size, capacity; public: MyCircularQueue(int k) { capacity = k; arr = new int[capacity]; front = 0; rear = -1; size = 0; } // Insert an element bool enQueue(int value) { if (isFull()) return false; rear = (rear + 1) % capacity; arr[rear] = value; size++; return true; } // Delete an element bool deQueue() { if (isEmpty()) return false; front = (front + 1) % capacity; size--; return true; } // Get front element int Front() { if (isEmpty()) return -1; return arr[front]; } // Get rear element int Rear() { if (isEmpty())
+
+return -1; return arr[rear]; } // Check if queue is empty bool isEmpty() { return size == 0; } // Check if queue is full bool isFull() { return size == capacity; } // Display queue elements void display() { if (isEmpty()) { cout << "Queue is empty\n"; return; } int i = front; for (int count = 0; count < size; count++) { cout << arr[i] << " "; i = (i + 1) % capacity; } cout << endl; } }; int main() { MyCircularQueue q(5); q.enQueue(10); q.enQueue(20); q.enQueue(30); q.enQueue(40); cout << "Queue: "; q.display(); q.deQueue();
+
+q.deQueue(); cout << "After Dequeue: "; q.display(); q.enQueue(50); q.enQueue(60); cout << "After Enqueue: "; q.display(); cout << "Front: " << q.Front() << endl; cout << "Rear: " << q.Rear() << endl; return 0; }
